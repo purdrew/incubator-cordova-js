@@ -17,7 +17,7 @@ describe("require", function () {
         it("throws an error the module already exists", function () {
             expect(function () {
                 define("cordova", function () {});
-            }).toThrow("module cordova already defined");
+            }).toThrow("module \"cordova\" already defined");
         });
 
         it("doesn't call the factory method when defining", function () {
@@ -31,7 +31,7 @@ describe("require", function () {
         it("throws an exception when module doesn't exist", function () {
             expect(function () {
                 require("your mom");
-            }).toThrow("module your mom not found");
+            }).toThrow("module \"your mom\" not found");
         });
 
         it("calls the factory method when requiring", function () {
@@ -39,7 +39,7 @@ describe("require", function () {
             define("dino", factory);
             require("dino");
 
-            expect(factory).toHaveBeenCalledWith(require,
+            expect(factory).toHaveBeenCalledWith(jasmine.any(Function),
                 {}, {
                     id: "dino",
                     exports: {}
